@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GalaxyMemory</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     SIDEBAR
+===================================== -->
+
+<aside class="sidebar">
+
+
+    <div class="logo">
+
+        <h1>GalaxyMemory</h1>
+
+        <p>
+            your universe. your memories.
+        </p>
+
+    </div>
+
+
+    <nav>
+
+        <button class="nav-item active">
+            <span>◉</span>
+            <span class="nav-text">
+                Galaxy
+            </span>
+        </button>
+
+
+        <button class="nav-item">
+            <span>◷</span>
+            <span class="nav-text">
+                Timeline
+            </span>
+        </button>
+
+
+        <button class="nav-item" id="albumsNavButton">
+            <span>▧</span>
+            <span class="nav-text">
+                Albums
+            </span>
+        </button>
+
+
+        <button class="nav-item">
+            <span>◇</span>
+            <span class="nav-text">
+                Tags
+            </span>
+        </button>
+
+
+        <button class="nav-item">
+            <span>⌕</span>
+            <span class="nav-text">
+                Search
+            </span>
+        </button>
+
+
+        <button class="nav-item">
+            <span>✦</span>
+            <span class="nav-text">
+                AI Companion
+            </span>
+        </button>
+
+
+                <button class="nav-item">
+            <span>⚙</span>
+            <span class="nav-text">
+                Settings
+            </span>
+        </button>
+
+    </nav>
+
+
+    <!-- =================================
+         ADD MEMORY
+    ================================== -->
+
+    <button
+        class="add-memory"
+        id="addMemoryButton"
+    >
+
+        <span>✦</span>
+
+        <span>
+            Add Memory
+        </span>
+
+        <span>＋</span>
+
+    </button>
+
+
+</aside>
+
+    <!-- =================================
+         STATS
+    ================================== -->
+
+    <div class="stats">
+
+        <div class="stats-title">
+            STATS
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                Memories
+            </span>
+
+            <strong id="memoryCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                Stars
+            </span>
+
+            <strong id="starCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                Albums
+            </span>
+
+            <strong>
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                Days
+            </span>
+
+            <strong>
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    
+
+
+<!-- =====================================
+     MAIN
+===================================== -->
+
+<main class="main">
+
+
+    <!-- =================================
+         TOP BAR
+    ================================== -->
+
+    <header class="topbar">
+
+
+        <div class="search-box">
+
+            <span>⌕</span>
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Search your galaxy..."
+            >
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <button>
+                ☾
+            </button>
+
+
+            <button class="notification">
+
+                ♧
+
+                <span></span>
+
+            </button>
+
+
+            <div class="avatar">
+                S
+            </div>
+
+
+            <button>
+                ⌄
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================
+     TIMELINE
+    ===================================== -->
+
+    <section
+        id="timelineView"
+        class="timeline-view"
+    >
+
+        <div class="timeline-header">
+
+            <div>
+
+                <p class="timeline-small">
+                    YOUR JOURNEY
+                </p>
+
+                <h2>
+                    Memory Timeline
+                </h2>
+
+            </div>
+
+            <button
+                id="timelineAddButton"
+                class="timeline-add"
+            >
+                + Add Memory
+            </button>
+
+        </div>
+
+
+        <div
+            id="timelineList"
+            class="timeline-list"
+        >
+        </div>
+
+    </section>
+
+    <!-- =====================================
+     ALBUMS
+    ===================================== -->
+
+    <section
+        id="albumsView"
+        class="albums-view"
+    >
+
+        <div class="albums-header">
+
+            <div>
+
+                <p class="albums-small">
+                    YOUR COLLECTION
+                </p>
+
+                <h2>
+                    Memory Albums
+                </h2>
+
+                <p class="albums-subtitle">
+                    Organize your memories into collections.
+                </p>
+
+            </div>
+
+            <button
+                id="createAlbumButton"
+                class="create-album-button"
+            >
+                + Create Album
+            </button>
+
+        </div>
+
+
+        <div
+            id="albumsGrid"
+            class="albums-grid"
+        >
+
+            <!-- Albums will be created here -->
+
+        </div>
+
+    </section>
+    
+
+    <!-- =================================
+         GALAXY
+    ================================== -->
+
+    <div id="galaxy">
+
+        <div id="backgroundStars"></div>
+
+        <div id="memoryStars">
+
+            <svg
+                id="constellationLines"
+                class="constellation-lines"
+            ></svg>
+
+        </div>
+        
+        <div class="galaxy-core"></div>
+
+    </div>
+
+
+
+    <!-- =================================
+         EMPTY GALAXY MESSAGE
+    ================================== -->
+
+    <div
+        id="emptyMessage"
+        class="empty-message"
+    >
+
+        <div class="empty-icon">
+            ✦
+        </div>
+
+        <h2>
+            Your galaxy is waiting
+        </h2>
+
+        <p>
+            Create your first memory
+            to place a star in your universe.
+        </p>
+
+        <button id="emptyAddButton">
+            + Create your first memory
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================
+         MEMORY PANEL
+    ================================== -->
+
+    <section
+        class="memory-panel"
+        id="memoryPanel"
+    >
+
+        <button
+            class="close-panel"
+            id="closePanel"
+        >
+            ×
+        </button>
+
+
+        <div
+            class="memory-star-icon"
+            id="panelStar"
+        >
+            ✦
+        </div>
+
+
+        <h2 id="memoryTitle">
+            Memory
+        </h2>
+
+
+        <p
+            class="memory-date"
+            id="memoryDate"
+        >
+        </p>
+
+
+        <img
+            id="memoryImage"
+            alt="Memory"
+        >
+
+
+        <p
+            class="memory-description"
+            id="memoryDescription"
+        >
+        </p>
+
+
+        <div class="memory-divider"></div>
+
+
+        <div class="section-title">
+            TAGS
+        </div>
+
+
+        <div
+            class="tags"
+            id="memoryTags"
+        >
+        </div>
+
+
+        <div class="panel-actions">
+
+            <button>
+                ↗
+            </button>
+
+            <button>
+                ✎
+            </button>
+
+            <button
+                class="delete"
+                id="deleteMemory"
+            >
+                🗑
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         ZOOM
+    ================================== -->
+
+    <div class="zoom-controls">
+
+        <button id="zoomOut">
+            −
+        </button>
+
+        <span id="zoomValue">
+            100%
+        </span>
+
+        <button id="zoomIn">
+            ＋
+        </button>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================
+     ADD MEMORY MODAL
+===================================== -->
+
+<div
+    class="modal-overlay"
+    id="modalOverlay"
+>
+
+
+    <div class="memory-modal">
+
+
+        <button
+            class="modal-close"
+            id="modalClose"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-icon">
+            ✦
+        </div>
+
+
+        <h2>
+            Create a Memory
+        </h2>
+
+
+        <p class="modal-subtitle">
+            Add a moment to your universe.
+        </p>
+
+
+        <form id="memoryForm">
+
+
+            <label>
+                Memory title
+            </label>
+
+            <input
+                id="memoryInputTitle"
+                type="text"
+                placeholder="e.g. Trip to Mountains"
+                required
+            >
+
+
+            <label>
+                Date
+            </label>
+
+            <input
+                id="memoryInputDate"
+                type="date"
+                required
+            >
+
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+                id="memoryInputDescription"
+                placeholder="Tell the story..."
+                rows="4"
+                required
+            ></textarea>
+
+
+            <label>
+                Tags
+            </label>
+
+            <input
+                id="memoryInputTags"
+                type="text"
+                placeholder="travel, friends, fun"
+            >
+
+
+            <label>
+                Photo
+            </label>
+
+            <input
+                id="memoryInputImage"
+                type="file"
+                accept="image/*"
+                multiple
+            >
+
+
+            <button
+                type="submit"
+                class="create-memory-button"
+            >
+                ✦ Create Memory
+            </button>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+     CREATE ALBUM MODAL
+===================================== -->
+
+<div
+    class="modal-overlay"
+    id="albumModalOverlay"
+>
+
+    <div class="memory-modal album-modal">
+
+        <button
+            class="modal-close"
+            id="albumModalClose"
+        >
+            ×
+        </button>
+
+        <div class="modal-icon">
+            ▧
+        </div>
+
+        <h2>
+            Create an Album
+        </h2>
+
+        <p class="modal-subtitle">
+            Bring your memories together.
+        </p>
+
+
+        <form id="albumForm">
+
+            <label>
+                Album name
+            </label>
+
+            <input
+                id="albumNameInput"
+                type="text"
+                placeholder="e.g. School Memories"
+                required
+            >
+
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+                id="albumDescriptionInput"
+                placeholder="What's this album about?"
+                rows="3"
+            ></textarea>
+
+
+            <label>
+                Select Memories
+            </label>
+
+            <div
+                id="albumMemorySelector"
+                class="album-memory-selector"
+            >
+            </div>
+
+
+            <button
+                type="submit"
+                class="create-memory-button"
+            >
+                ▧ Create Album
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
